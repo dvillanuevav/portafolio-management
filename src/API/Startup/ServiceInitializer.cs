@@ -3,6 +3,7 @@ using Common.Entities.Validators;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Fluent;
 using System;
+using FastEndpoints.Swagger;
 
 namespace API.Startup
 {
@@ -12,8 +13,16 @@ namespace API.Startup
         {
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
-            services.AddFastEndpoints();            
-            services.AddSingleton(AddDatabase(configuration).GetAwaiter().GetResult());
+            services.AddFastEndpoints();
+            services.SwaggerDocument(o =>
+            {
+                o.DocumentSettings = s =>
+                {
+                    s.Title = "Portafolio Management API";
+                    s.Version = "v1";
+                };
+            });
+            services.AddSingleton(AddDatabase(configuration).GetAwaiter().GetResult());           
 
             return services;
         }
@@ -37,7 +46,12 @@ namespace API.Startup
 
         public static IApplicationBuilder AddApplication(this IApplicationBuilder app)
         {
-            app.UseFastEndpoints();
+            app.UseFastEndpoints(c =>
+            {
+                c.Endpoints.RoutePrefix = "portafolio-management";
+            });
+            app.UseSwaggerGen();
+            app.UseHttpsRedirection();            
             
             return app;
         }

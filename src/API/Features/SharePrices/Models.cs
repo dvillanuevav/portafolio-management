@@ -1,11 +1,10 @@
-﻿using API.Features.Balances.Dtos;
-using FluentValidation;
+﻿using FluentValidation;
 using Newtonsoft.Json;
 using Common.Entities.Validators;
 
-namespace API.Features.SharePrices.Dtos
+namespace API.Features.SharePrices
 {
-    public class SharePriceRequest
+    internal sealed class Request
     {
         [JsonProperty("date")]
         public string Date { get; set; }
@@ -14,9 +13,9 @@ namespace API.Features.SharePrices.Dtos
         public decimal Price { get; set; }
     }
 
-    public class SharePriceRequestValidator : AbstractValidator<SharePriceRequest>
+    internal sealed class Validator : AbstractValidator<Request>
     {
-        public SharePriceRequestValidator()
+        public Validator()
         {
             RuleFor(x => x.Price)
                 .NotEmpty()
@@ -29,5 +28,17 @@ namespace API.Features.SharePrices.Dtos
                 .WithMessage("It must be format 'yyyy-MM-dd'");
 
         }
+    }
+
+    internal struct Response
+    {
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("date")]
+        public string Date { get; set; }
+
+        [JsonProperty("price")]
+        public decimal Price { get; set; }
     }
 }
