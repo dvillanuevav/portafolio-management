@@ -33,8 +33,6 @@ Ejemplo:
 * [MS Azure Storage Explorer](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-emulator)
 * [Redis](https://github.com/MicrosoftArchive/redis/releases)
 
-> Lamentablemente no alcance a desplegar la solucion en Azure o crear una imagen con todas las dependencias.
-
 ## Getting started
 
 ### Configure startup projects
@@ -98,12 +96,6 @@ curl -X 'POST' \
 ```
 
 ## Items missing
-- API
-    - Consultar todos los valores de cuota desde el cache 
-- Prueba unitarias
-    - API
-    - Functions: fn-shareprices-cache-changefeed
-- Pruebas de integración
-- Atenticación y autorización
-
-> P.D.: Lo siento haber subido este archivo y ajustar un bug en el endpoint de balances despues del deadline.
+- Consultar todos los valores de cuota desde el cache 
+- Mover todos a funciones y elimanar Web API.
+- Autenticación y autorización
