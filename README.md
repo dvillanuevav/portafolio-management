@@ -97,5 +97,5 @@ curl -X 'POST' \
 
 ## Items missing
 - Consultar todos los valores de cuota desde el cache 
-- Mover todos a funciones y elimanar Web API.
+- Mover todos a funciones y eliminar Web API.
 - Autenticación y autorización
